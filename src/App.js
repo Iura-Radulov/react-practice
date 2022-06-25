@@ -2,6 +2,7 @@
 import './App.css';
 import React from "react";
 import Product from './products';
+import  {  SignUpForm } from './module2';
 
 
 function App() {
@@ -19,7 +20,9 @@ function App() {
       name="Fries and Burger"
         price={14.29}
         quantity={30}
-    />
+      />
+      {/* <LoginForm onSubmit={value => console.log(value)} /> */}
+      <SignUpForm onClick={values => console.log(values)} />
     </div>
   );
 }
