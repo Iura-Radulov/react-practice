@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 // import ReactDOM from 'react-dom/client';
+// import { nanoid } from "nanoid";
 
 export class LoginForm extends Component {
     handleSubmit = evt => {
@@ -24,20 +25,21 @@ export class LoginForm extends Component {
 const INITIAL_STATE = {
   login: "",
   email: "",
-  password: "",
+    password: "",
+  agreed: false,
 };
 
 export class SignUpForm extends Component {
     state = { ...INITIAL_STATE };
 
     handleChange = e => {
-        const { name, value } = e.target;
-        this.setState({[name]: value})
+        const { name, value, type, checked } = e.target;
+        this.setState({[name]: type === "checkbox" ? checked : value})
     }
     handleSubmit = evt => {
         evt.preventDefault();
-        const { login, email, password } = this.state;
-        console.log(`Login: ${login}, Email: ${email}, Password: ${password}`);
+        const { login, email, password, agreed } = this.state;
+        console.log(`Login: ${login}, Email: ${email}, Password: ${password}, Agreed: ${agreed}`);
         this.props.onSubmit({ ...this.state });
         this.reset();
     }
@@ -45,7 +47,7 @@ export class SignUpForm extends Component {
         this.setState({ ...INITIAL_STATE });
     } 
     render() {
-        const { login, email, password } = this.state;
+        const { login, email, password, agreed } = this.state;
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
@@ -75,12 +77,32 @@ export class SignUpForm extends Component {
                         value={password}
                     onChange={this.handleChange}/>
                 </label>
-                <button type="button">Sign up as { login}</button>
+                <label>
+                    Agree to tems
+                    <input
+                        type="checkbox"
+                        name="checkbox"
+                        checked={agreed}
+                    onChange={this.handleChange}/>
+                </label>
+                <button type="button" disabled={!agreed}>Sign up as { login}</button>
             </form>
         )
     }
 } 
+
 // ReactDOM.render(
-//     <LoginForm onSubmit={value => console.log(value)} />,
-//     document.getElementById("root")
-// )
+//   <SignUpForm onSubmit={values => console.log(values)} />,
+//   document.getElementById("root")
+// );
+// class Form extends Component {
+//     loginInputId = nanoid();
+//     render() {
+//         return (
+//             <form>
+//                 <label htmlFor={this.loginInputId}>Login</label>
+//                 <input type="text" name="login" id={this.loginInputId }/>
+//             </form>
+//         )
+//     }
+// }

@@ -1,14 +1,14 @@
 
 import './App.css';
 import React from "react";
-import Product from './products';
+// import Product from './products';
 import  {  SignUpForm } from './module2';
 
 
 function App() {
   return (
     <div>
-      <h1>Best selling products</h1>
+      {/* <h1>Best selling products</h1>
       <Product
         imageUrl="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2&h=480&w=640"
         name="Tacos With Lime"
@@ -20,9 +20,9 @@ function App() {
       name="Fries and Burger"
         price={14.29}
         quantity={30}
-      />
+      /> */}
       {/* <LoginForm onSubmit={value => console.log(value)} /> */}
-      <SignUpForm onClick={values => console.log(values)} />
+      <SignUpForm onSubmit={values => console.log(values)} />
     </div>
   );
 }
